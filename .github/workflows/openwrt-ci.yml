@@ -5,16 +5,20 @@
 # Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
-# 
+#
 
 name: OpenWrt-CI
 
 on:
-  schedule:
-    - cron: 0 20 * * *
-  # push:
-  #   branches: 
-  #     - master
+  push:
+    branches: 
+      - master
+  # schedule:
+  #   - cron: 0 20 * * *
+  # release:
+  #   types: [published]
+  # watch:
+  #   types: [started]
 
 jobs:
   build:
@@ -95,11 +99,9 @@ jobs:
           # 
 
           # 编译x64固件:
-          # cat >> .config <<EOF
-          #   CONFIG_TARGET_x86=y
-          #   CONFIG_TARGET_x86_64=y
-          #   CONFIG_TARGET_x86_64_Generic=y
-          # EOF
+           cat >> .config <<EOF
+              CONFIG_TARGET_ipq40xx_DEVICE_asus_rt-acrh17=y
+           EOF
 
           # 固件压缩:
           # cat >> .config <<EOF
@@ -148,7 +150,6 @@ jobs:
           #   CONFIG_PACKAGE_luci-app-minidlna=y
           #   CONFIG_PACKAGE_luci-app-openvpn=y
           #   CONFIG_PACKAGE_luci-app-openvpn-server=y
-          #   CONFIG_PACKAGE_luci-app-smartinfo=y
           #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
           #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
           #   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
