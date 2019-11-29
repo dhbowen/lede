@@ -18,7 +18,6 @@ on:
   #   - cron: 0 20 * * *
   # release:
   #   types: [published]
-
 jobs:
   build:
     runs-on: ubuntu-latest
